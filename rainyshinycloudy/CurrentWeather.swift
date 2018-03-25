@@ -30,7 +30,7 @@ class CurrentWeather{
         dateFormatter.dateStyle = .long
         dateFormatter.timeStyle = .none
         let currentDate = dateFormatter.string(from: Date())
-        self._date = "Today, \(currentDate)"
+        self._date = "Today: \(currentDate)"
         return _date
     }
     
@@ -48,15 +48,16 @@ class CurrentWeather{
         return _currentTemp
     }
     
-    func downloadWeatherDetails(completed: DownloadComplete) {
+    func downloadWeatherDetails(completed: @escaping DownloadComplete) {
         //Alamofire download
         let currentWeatherURL = URL(string: CURRENT_WEATHER_URL)!
         Alamofire.request(currentWeatherURL).responseJSON { response in
             let result = response.result
+            print(response)
             
             if let dict = result.value as? Dictionary<String, AnyObject> {
                 
-                if let name = dict["name"] as? String{
+                if let name = dict["name"] as? String {
                     self._cityName = name.capitalized
                     print(self._cityName)
                 }
@@ -74,8 +75,8 @@ class CurrentWeather{
                     }
                 }
             }
+            completed()
         }
-        completed()
     }
 }
 
