@@ -13,7 +13,8 @@ let LATITUDE = "lat="
 let LONGITUDE = "&lon="
 let COUNT = "&cnt="
 let APP_ID = "&appid="
-let API_KEY = "98fe8b57935a031db2c739037367047f"
+let API_KEY = "98fe8b57935a031db2c739037367047f" // openWeatherAPI key
+let API_KEY2 = "b501aae976544941b2f175332180104" // APIXU key - TBD
 
 typealias DownloadComplete = () -> ()
 
